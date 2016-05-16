@@ -12,6 +12,10 @@
 #define kPowerMateReportBufferSize		6
 #define kRotationAvgSize				32
 
+@class PMDEvent;
+
+@protocol PMDDeviceDelegate;
+
 @interface PMDDevice : NSObject
 {
 	io_service_t				_serviceID;
@@ -50,5 +54,15 @@
 @property (nonatomic, assign) UInt64		activeEventID;
 @property (nonatomic, assign) CGFloat		brightness, pulseRate;
 @property (nonatomic, assign) BOOL			shouldPulse;
+
+@property (assign) id<PMDDeviceDelegate> delegate;
+
+@end
+
+#pragma mark -
+
+@protocol PMDDeviceDelegate <NSObject>
+
+- (void)powerMateDevice:(PMDDevice *)device didReceiveEvent:(PMDEvent *)event;
 
 @end

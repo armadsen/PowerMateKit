@@ -210,6 +210,8 @@ void PowerMateCallbackFunction(
 	
 	[_name release];
 	
+	_delegate = nil;
+	
 	[super dealloc];
 }
 
@@ -411,7 +413,10 @@ void PowerMateCallbackFunction(
 			devEvent = [PMDEvent createEventWithLocation: [self locationID] type: eventType modifiers: eventModifiers];
 			
 			_activeEventID = devEvent.eventID;
-			[[PMDManager sharedManager] handleEvent: devEvent]; 
+			[[PMDManager sharedManager] handleEvent: devEvent];
+			if ([self.delegate respondsToSelector:@selector(powerMateDevice:didReceiveEvent:)]) {
+				[self.delegate powerMateDevice:self didReceiveEvent:devEvent];
+			}
 			_lastAction = devEvent.type;
 			_lastButton = newButton;
 			_lastButtonTime = eventTime;
