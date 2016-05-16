@@ -6,7 +6,7 @@
 //
 
 #import "PMDAppDelegate.h"
-#import "PMDManager.h"
+#import <PowerMateKit/PowerMateKit.h>
 
 @implementation PMDAppDelegate
 

@@ -78,7 +78,7 @@ static UInt64	sActiveEventID = 0;
 
 - (NSString *) description
 {
-	return [NSString stringWithFormat: @"PMDEvent (%ld) [%ld] %@ %@ - (%f) %f / %f",
+	return [NSString stringWithFormat: @"PMDEvent (%ld) [%llu] %@ %@ - (%f) %f / %f",
 			_deviceLocation, _eventID, [PMDEvent stringForType: _type],
 			[PMDEvent stringForModifiers: _modifiers], _rps, _scaledValue, _rawValue];
 }
